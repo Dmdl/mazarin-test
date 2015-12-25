@@ -8,7 +8,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.Size;
 
-@Entity
+@Entity(name="customer")
 public class Customer {
 
 	@Id
