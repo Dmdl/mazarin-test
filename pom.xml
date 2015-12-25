@@ -265,7 +265,21 @@
                     <warName>TestApp</warName>
                     <webappDirectory>/opt/apache/tomcat/apache-tomcat-7.0.34/webapps/TestApp</webappDirectory>
                 </configuration>
-            </plugin>		
+            </plugin>
+            <plugin>
+			    <artifactId>maven-clean-plugin</artifactId>
+			    <version>2.4.1</version>
+			    <configuration>
+			        <filesets>
+			            <fileset>
+			                <directory>src/main/webapp/WEB-INF/classes</directory>
+			            </fileset>
+			            <fileset>
+			                <directory>src/main/webapp/WEB-INF/lib</directory>
+			            </fileset>
+			        </filesets>
+			    </configuration>
+			</plugin>		
 	</plugins>
   </build>
 </project>

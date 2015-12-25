@@ -6,6 +6,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity(name="log")
 public class Log {
@@ -15,6 +17,7 @@ public class Log {
 	private int id;
 	@Column(name = "message")
 	private String message;
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date date;
 
 	public int getId() {
