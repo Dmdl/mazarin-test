@@ -3,6 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <h1>Customers</h1>
 
@@ -74,7 +75,15 @@ $(document).ready(
 	    				$(element).closest('.form-group').removeClass(
 	    					'has-error').addClass('has-success');
 	    			    }
-	    			});	    	
+	    			});	
+	    	
+	    	$('.triggerRemove').click(
+	    			function(e) {
+	    			    e.preventDefault();
+	    			    $('#modalRemove .removeBtn').attr("href",
+	    				    $(this).attr("href"));
+	    			    $('#modalRemove').modal();
+	    			});
 	    });
 </script>
 
@@ -88,6 +97,11 @@ $(document).ready(
 		</tr>
 	</thead>
 	<tbody>
+		<c:if test="${fn:length(users) eq 0}">
+		   <tr>
+		   		<td>Add Customers</td>
+		   </tr>
+		</c:if>
 		<c:forEach items="${users}" var="item">
 			<tr>
 				<td><c:out value="${item.id}"></c:out></td>
@@ -96,11 +110,34 @@ $(document).ready(
 				<td>
 					<div align="center">
 						<a href='<spring:url value="/index/edit/${item.id}.html"/>'
-							class="btn btn-warning triggerRemove">Edit</a>
-						<button type="button" class="btn btn-danger">Delete</button>
+							class="btn btn-warning">Edit</a>
+						<!-- <button type="button" class="btn btn-danger">Delete</button> -->
+						<a href='<spring:url value="/index/delete/${item.id}.html"/>'
+						class="btn btn-danger triggerRemove">Delete</a>
 					</div>
 				</td>
 			</tr>
 		</c:forEach>
 	</tbody>
 </table>
+
+<!-- Modal -->
+<div class="modal fade" id="modalRemove" tabindex="-1" role="dialog"
+	aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal"
+					aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+				<h4 class="modal-title" id="myModalLabel">Delete Customer</h4>
+			</div>
+			<div class="modal-body">Really Delete ?</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+				<a href="" class="btn btn-danger removeBtn">Delete</a>
+			</div>
+		</div>
+	</div>
+</div>

@@ -71,4 +71,10 @@ public class MainController {
 			return "error";
 		}		
 	}
+	
+	@RequestMapping("/index/delete/{id}")
+	public String deleteCustomer(Model model, @PathVariable int id) {
+		customerService.deleteCustomer(id);
+		return "redirect:/index.html";
+	}
 }

@@ -40,4 +40,9 @@ public class CustomerServiceImpl implements CustomerService {
 		fethCustomer.setCustomerName(customer.getCustomerName());
 		fethCustomer.setCustomerDepartment(customer.getCustomerDepartment());
 	}
+
+	@Override
+	public void deleteCustomer(int id) {
+		customerRepository.delete(id);
+	}
 }

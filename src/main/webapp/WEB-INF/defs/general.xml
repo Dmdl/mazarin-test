@@ -26,6 +26,12 @@
 		<put-attribute name="current" value="edit" />
 	</definition>
 	
+	<definition name="departments" extends="common">
+		<put-attribute name="title" value="Edit Customer" />
+		<put-attribute name="body" value="/WEB-INF/jsp/list-department.jsp" />
+		<put-attribute name="current" value="departments" />
+	</definition>
+	
 	<definition name="error" extends="common">
 		<put-attribute name="title" value="Error" />
 		<put-attribute name="body" value="/WEB-INF/jsp/error.jsp" />

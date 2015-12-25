@@ -42,9 +42,9 @@
 				<div id="navbar" class="navbar-collapse collapse">
 					<ul class="nav navbar-nav">
 						<li class="${current=='index' ? 'active' : ''}"><a
-							href='<spring:url value="/" />'>Home</a></li>						
-						<li class="${current=='users' ? 'active' : ''}"><a
-							href='<spring:url value="/users.html"></spring:url>'>Users</a></li>						
+							href='<spring:url value="/" />'>Customers</a></li>						
+						<li class="${current=='departments' ? 'active' : ''}"><a
+							href='<spring:url value="/department.html"></spring:url>'>Departments</a></li>						
 					</ul>
 				</div>
 			</div>
