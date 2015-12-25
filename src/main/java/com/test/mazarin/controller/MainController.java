@@ -26,9 +26,14 @@ public class MainController {
 
 	@RequestMapping("/index")
 	public String customers(Model model) {
-		model.addAttribute("users", customerService.findAll());
-		model.addAttribute("departments", departmentService.getAll());
-		return "index";
+		try{
+			model.addAttribute("users", customerService.findAll());
+			model.addAttribute("departments", departmentService.getAll());
+			return "index";
+		}catch(Exception e){
+			e.printStackTrace();
+			return "error";
+		}		
 	}
 	
 	@ModelAttribute("customer")
@@ -42,17 +47,27 @@ public class MainController {
 		if (result.hasErrors()) {
 			return "index";
 		}
-		Department selectedDepartment = departmentService.getDepartment(customer.getCustomerDepartment().getId());
-		customer.setCustomerDepartment(selectedDepartment);
-		customerService.save(customer);
-		return "redirect:/index.html?success=true";
+		try{
+			Department selectedDepartment = departmentService.getDepartment(customer.getCustomerDepartment().getId());
+			customer.setCustomerDepartment(selectedDepartment);
+			customerService.save(customer);
+			return "redirect:/index.html?success=true";
+		}catch(Exception e){
+			e.printStackTrace();
+			return "error";
+		}		
 	}
 	
 	@RequestMapping("/index/edit/{id}")
 	public String editCustomer(Model model, @PathVariable int id) {
-		model.addAttribute("customer", customerService.findCustomer(id));
-		model.addAttribute("departments", departmentService.getAll());
-		return "edit-customer";
+		try{
+			model.addAttribute("customer", customerService.findCustomer(id));
+			model.addAttribute("departments", departmentService.getAll());
+			return "edit-customer";
+		}catch(Exception e){
+			e.printStackTrace();
+			return "error";
+		}		
 	}
 	
 	@RequestMapping(value = "/index/edit",method = RequestMethod.POST)
@@ -74,7 +89,12 @@ public class MainController {
 	
 	@RequestMapping("/index/delete/{id}")
 	public String deleteCustomer(Model model, @PathVariable int id) {
-		customerService.deleteCustomer(id);
-		return "redirect:/index.html";
+		try{
+			customerService.deleteCustomer(id);
+			return "redirect:/index.html";
+		}catch(Exception e){
+			e.printStackTrace();
+			return "error";
+		}		
 	}
 }
