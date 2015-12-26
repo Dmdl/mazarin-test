@@ -67,10 +67,15 @@ public class MainController {
 	@RequestMapping("/index/edit/{id}")
 	public String editCustomer(Model model, @PathVariable int id) {
 		try{
-			model.addAttribute("customer", customerService.findCustomer(id));
-			model.addAttribute("departments", departmentService.getAll());
-			LOG.info("Redirect to edit customer with customer id "+id);
-			return "edit-customer"; //redirect to edit customer view
+			Customer customerToEdit = customerService.findCustomer(id);
+			if(null!=customerToEdit){
+				model.addAttribute("customer", customerToEdit);
+				model.addAttribute("departments", departmentService.getAll());
+				LOG.info("Redirect to edit customer with customer id "+id);
+				return "edit-customer"; //redirect to edit customer view
+			}else{
+				return "404"; //customer not found
+			}
 		}catch(Exception e){
 			LOG.error("Error redirecting customer with id "+id+" to edit page "+e.getMessage());
 			//redirect to error page
