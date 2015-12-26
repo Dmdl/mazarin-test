@@ -13,6 +13,7 @@ Wildfly</b>.
 
 # Instructions to deploy
 <ul>
+<li>Clone the repository (https://github.com/Dmdl/mazarin-test.git)</li>
 <li>Change properties of <b>db.properties</b> under resources folder (url,username,password)</li>
 <li>Create a MySQL database (same as above property file's url)</li>
 <li>Invoke maven command <b>mvn clean compile package</b></li>
