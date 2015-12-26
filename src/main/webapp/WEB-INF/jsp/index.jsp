@@ -64,7 +64,8 @@ $(document).ready(
 	    			    rules : {
 		    			    customerName : {
 		    				    required : true,
-		    				    minlength : 1
+		    				    minlength : 1,
+		    				    maxlength: 150
 		    				},
 	    			    },
 	    			    highlight : function(element) {
@@ -133,7 +134,7 @@ $(document).ready(
 				</button>
 				<h4 class="modal-title" id="myModalLabel">Delete Customer</h4>
 			</div>
-			<div class="modal-body">Really Delete ?</div>
+			<div class="modal-body">Are You Sure ?</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
 				<a href="" class="btn btn-danger removeBtn">Delete</a>
