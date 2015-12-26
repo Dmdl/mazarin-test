@@ -2,6 +2,8 @@ package com.test.mazarin.controller;
 
 import javax.validation.Valid;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,15 +25,18 @@ public class MainController {
 	private CustomerService customerService;
 	@Autowired
 	private DepartmentService departmentService;
+	private Logger LOG=LoggerFactory.getLogger(getClass());
 
 	@RequestMapping("/index")
 	public String customers(Model model) {
 		try{
+			//retrive all departments and customers and pass them to view
 			model.addAttribute("users", customerService.findAll());
 			model.addAttribute("departments", departmentService.getAll());
 			return "index";
 		}catch(Exception e){
-			e.printStackTrace();
+			LOG.error("Error occured while redirecting to customer page "+e.getMessage());
+			//redirect to error page
 			return "error";
 		}		
 	}
@@ -45,15 +50,16 @@ public class MainController {
 	public String doSaveCustomer(@Valid @ModelAttribute("customer") Customer customer,
 			BindingResult result) {
 		if (result.hasErrors()) {
-			return "index";
+			return "index"; //return if we got errors
 		}
 		try{
 			Department selectedDepartment = departmentService.getDepartment(customer.getCustomerDepartment().getId());
 			customer.setCustomerDepartment(selectedDepartment);
 			customerService.save(customer);
+			LOG.info("Customer saved successfully");
 			return "redirect:/index.html?success=true";
 		}catch(Exception e){
-			e.printStackTrace();
+			LOG.error("Error while saving customer "+e.getMessage());
 			return "error";
 		}		
 	}
@@ -63,16 +69,17 @@ public class MainController {
 		try{
 			model.addAttribute("customer", customerService.findCustomer(id));
 			model.addAttribute("departments", departmentService.getAll());
-			return "edit-customer";
+			LOG.info("Redirect to edit customer with customer id "+id);
+			return "edit-customer"; //redirect to edit customer view
 		}catch(Exception e){
-			e.printStackTrace();
+			LOG.error("Error redirecting customer with id "+id+" to edit page "+e.getMessage());
+			//redirect to error page
 			return "error";
 		}		
 	}
 	
 	@RequestMapping(value = "/index/edit",method = RequestMethod.POST)
-	public String doEditCustomer(@Valid @ModelAttribute("customer") Customer customer,BindingResult result) {
-		System.out.println("in edit method "+customer.getId()+" dep "+customer.getCustomerDepartment().getId()+" name "+customer.getCustomerName());
+	public String doEditCustomer(@Valid @ModelAttribute("customer") Customer customer,BindingResult result) {		
 		if (result.hasErrors()) {
 			return "index";
 		}
@@ -80,9 +87,11 @@ public class MainController {
 			Department newDepartment = departmentService.getDepartment(customer.getCustomerDepartment().getId());
 			customer.setCustomerDepartment(newDepartment);
 			customerService.updateCustomer(customer);
-			return "redirect:/index.html";
+			LOG.info("Customer updated successfully "+customer.getId());
+			return "redirect:/index.html"; //after successfull riderect to index view back
 		}catch(Exception ex){
-			ex.printStackTrace();
+			LOG.error("Error editing customer "+ex.getMessage());
+			//redirect to error page
 			return "error";
 		}		
 	}
@@ -91,9 +100,11 @@ public class MainController {
 	public String deleteCustomer(Model model, @PathVariable int id) {
 		try{
 			customerService.deleteCustomer(id);
+			LOG.info("Customer with id "+ id+" deleted successfully");
 			return "redirect:/index.html";
 		}catch(Exception e){
-			e.printStackTrace();
+			LOG.error("Error while deleting customer with id "+id+" "+e.getMessage());
+			//redirect to error page
 			return "error";
 		}		
 	}
