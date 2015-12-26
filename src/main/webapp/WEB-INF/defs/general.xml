@@ -27,7 +27,7 @@
 	</definition>
 	
 	<definition name="departments" extends="common">
-		<put-attribute name="title" value="Edit Customer" />
+		<put-attribute name="title" value="Departments" />
 		<put-attribute name="body" value="/WEB-INF/jsp/list-department.jsp" />
 		<put-attribute name="current" value="departments" />
 	</definition>
