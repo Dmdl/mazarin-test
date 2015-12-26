@@ -91,7 +91,7 @@ $(document).ready(
 <table class="table table-bordered table-hover table-striped">
 	<thead>
 		<tr>
-			<th>Id</th>
+			<!-- <th>Id</th> -->
 			<th>Customer Name</th>
 			<th>Customer Department</th>
 			<th>Options</th>
@@ -105,7 +105,7 @@ $(document).ready(
 		</c:if>
 		<c:forEach items="${users}" var="item">
 			<tr>
-				<td><c:out value="${item.id}"></c:out></td>
+				<%-- <td><c:out value="${item.id}"></c:out></td> --%>
 				<td> <c:out value="${item.customerName}"></c:out></td>
 				<td> <c:out value="${item.customerDepartment.departmentName}"></c:out></td>
 				<td>
