@@ -5,7 +5,9 @@ Technologies used <br/>
 Spring MVC and AOP,
 Spring data JPA,
 MySQL,
-Apache Tiles</b>.
+Apache Tiles,
+Maven,
+Wildfly</b>.
 
 
 
