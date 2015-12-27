@@ -113,4 +113,16 @@ public class MainController {
 			return "error";
 		}		
 	}
+	
+	@RequestMapping("/index/cancel")
+	public String cancelEdit() {
+		try{
+			LOG.info("Redirecting to home page");
+			return "redirect:/index.html";
+		}catch(Exception e){
+			LOG.error("Error occured while redirect to home");
+			//redirect to error page
+			return "error";
+		}		
+	}
 }

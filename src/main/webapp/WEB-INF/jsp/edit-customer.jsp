@@ -31,6 +31,8 @@
 				<form:errors path="customerDepartment" />						
 			</div>
 		</div>
-		<input type="submit" class="btn btn-success" value="Update" />
+		<div align="right"><input type="submit" class="btn btn-success" value="Update" />
+		<a href='<spring:url value="/index/cancel.html"/>'
+							class="btn btn-warning">Cancel</a></div>
 	</div>
 </form:form>
