@@ -245,15 +245,15 @@
 					<target>1.7</target>
 				</configuration>
 			</plugin>
-			<plugin>
+			<!-- <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-war-plugin</artifactId>
                 <version>2.3</version>
                 <configuration>
                     <warName>TestApp</warName>
-                    <webappDirectory>/opt/apache/tomcat/apache-tomcat-7.0.34/webapps/TestApp</webappDirectory>
+                    <webappDirectory>/opt/apache/tomcat/apache-tomcat-7.0.341/webapps/TestApp</webappDirectory>
                 </configuration>
-            </plugin>
+            </plugin> -->
             <plugin>
 			    <artifactId>maven-clean-plugin</artifactId>
 			    <version>2.4.1</version>
