@@ -30,7 +30,7 @@ public class MainController {
 	@RequestMapping("/index")
 	public String customers(Model model) {
 		try{
-			//retrive all departments and customers and pass them to view - test ----
+			//retrive all departments and customers and pass them to view - test ----in test branch
 			model.addAttribute("users", customerService.findAll());
 			model.addAttribute("departments", departmentService.getAll());
 			return "index";
