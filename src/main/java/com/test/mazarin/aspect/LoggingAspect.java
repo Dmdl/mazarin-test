@@ -19,6 +19,10 @@ public class LoggingAspect {
 	@Autowired
 	private LogService logService;
 	
+	
+	/*
+	 * test comment
+	 */
 	@After("execution(* com.test.mazarin.service.CustomerService.save(..))")
     public void logAfterAdd(JoinPoint joinPoint) {
 		Object object = joinPoint.getArgs()[0];
