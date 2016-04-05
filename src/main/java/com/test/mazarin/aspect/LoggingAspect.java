@@ -21,7 +21,7 @@ public class LoggingAspect {
 	
 	
 	/*
-	 * test comment
+	 * test comment change
 	 */
 	@After("execution(* com.test.mazarin.service.CustomerService.save(..))")
     public void logAfterAdd(JoinPoint joinPoint) {
