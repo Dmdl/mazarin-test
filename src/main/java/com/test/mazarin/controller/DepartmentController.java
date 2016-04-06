@@ -17,6 +17,6 @@ public class DepartmentController {
 	@RequestMapping
 	public String listDepartments(Model model){
 		model.addAttribute("departments", departmentService.getAll());
-		return "departments"; //test branch
+		return "departments"; //test branch changes
 	}
 }
